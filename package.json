@@ -8,5 +8,24 @@
     "passport-jwt": "^4.0.0",
     "passport-local-sequelize": "^0.9.0",
     "sequelize": "^6.12.5"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "techblog",
+  "description": "## Your Task",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/g-broadhead/techBlog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/g-broadhead/techBlog/issues"
+  },
+  "homepage": "https://github.com/g-broadhead/techBlog#readme"
 }
