@@ -2,6 +2,16 @@ const router = require('express').Router()
 const { Post, User, Note } = require('../model')
 const passport = require('passport')
 
+// POST one post
+router.post('/posts', passport.authenticate('jwt'), async function (req, res) {
+  const post = await Post.create({
+    body: req.body.body,
+    title: req.body.title,
+    uid: req.user.id
+  })
+  res.json(post)
+})
+
 // GET all posts
 router.get('/posts', passport.authenticate('jwt'), async function (req, res) {
   const posts = await Post.findAll({ include: [User, Note] })
@@ -11,18 +21,6 @@ router.get('/posts', passport.authenticate('jwt'), async function (req, res) {
 router.get('/posts/:id', passport.authenticate('jwt'), async function (req, res) {
   const posts = await Post.findOne({ where: { id: req.params.id }, include: [User, Note] })
   res.json(posts)
-})
-
-
-
-// POST one post
-router.post('/posts', passport.authenticate('jwt'), async function (req, res) {
-  const post = await Post.create({
-    body: req.body.body,
-    title: req.body.title,
-    uid: req.user.id
-  })
-  res.json(post)
 })
 
 // DELETE one post

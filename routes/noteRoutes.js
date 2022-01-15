@@ -18,10 +18,10 @@ router.get('/notes', passport.authenticate('jwt'), async function (req, res) {
   res.json(notes)
 })
 
-// DELETE one post
-// router.delete('/posts/:id', passport.authenticate('jwt'), async function (req, res) {
-//   await Post.destroy({ where: { id: req.params.id } })
-//   res.sendStatus(200)
-// })
+// DELETE post
+router.delete('/posts/:id', passport.authenticate('jwt'), async function (req, res) {
+  await Post.destroy({ where: { id: req.params.id } })
+  res.sendStatus(200)
+})
 
 module.exports = router
