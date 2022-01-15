@@ -1,16 +1,8 @@
 const router = require('express').Router()
-const { Post, User, Note } = require('../models')
+const { Post, User, Note } = require('../model')
 const passport = require('passport')
 
-// GET all posts
-router.get('/notes', passport.authenticate('jwt'), async function (req, res) {
-  const notes = await Note.findAll({ include: [User, Post] })
-  res.json(notes)
-})
-
-
-
-// POST one post
+// Post a post
 router.post('/notes', passport.authenticate('jwt'), async function (req, res) {
   const note = await Note.create({
     body: req.body.body,
@@ -18,6 +10,12 @@ router.post('/notes', passport.authenticate('jwt'), async function (req, res) {
     uid: req.user.id
   })
   res.json(note)
+})
+
+// Get posts
+router.get('/notes', passport.authenticate('jwt'), async function (req, res) {
+  const notes = await Note.findAll({ include: [User, Post] })
+  res.json(notes)
 })
 
 // DELETE one post
