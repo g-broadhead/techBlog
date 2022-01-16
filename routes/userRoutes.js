@@ -13,26 +13,10 @@ router.post('/users/register', (req, res) => {
 router.post('/users/login', (req, res) => {
   User.authenticate()(req.body.username, req.body.password, (err, user) => {
     if (err) { console.log(err) }
-
-    res.json(user ? {
-      username: user.username,
-      token: jwt.sign({ id: user.id }, process.env.SECRET)
-    } : null)
+    res.json(user ? { username: user.username, token: jwt.sign({ id: user.id }, process.env.SECRET) } : null)
   })
 })
 
 router.get('/users/profile', passport.authenticate('jwt'), (req, res) => res.json(req.user))
-
-// GET one user
-// router.get('/users/:id', async function ({ params: { id } }, res) {
-//   const user = await User.findOne({ where: { id }, include: [Post] })
-//   res.json(user)
-// })
-
-// POST one user
-// router.post('/users', async function ({ body }, res) {
-//   const user = await User.create(body)
-//   res.json(user)
-// })
 
 module.exports = router
