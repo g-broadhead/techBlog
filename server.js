@@ -4,7 +4,7 @@ const express = require('express')
 const { join } = require('path')
 
 const passport = require('passport')
-const { User, Post, Note } = require('./model')
+const { User, Post, Note } = require('./models')
 const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
 
 const app = express()
@@ -35,7 +35,7 @@ passport.use(new JWTStrategy({
 
 app.use(require('./routes'))
 
-async function init() {
+async function init () {
   await require('./db').sync()
   app.listen(process.env.PORT || 3000)
 }
