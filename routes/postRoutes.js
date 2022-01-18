@@ -22,6 +22,7 @@ router.post('/posts', passport.authenticate('jwt'), async function (req, res) {
     uid: req.user.id
   })
   res.json(post)
+  console.log(post)
 })
 
 // Update
