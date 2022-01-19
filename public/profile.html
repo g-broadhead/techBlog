@@ -84,7 +84,7 @@
       const postId = event.target.getAttribute("data-postId")
       console.log(postId)
       localStorage.setItem('postId', postId)
-      location.redirect('/editPost')
+      window.location = '/editPost'
     }
 
     async function renderPosts() {
