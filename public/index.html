@@ -106,7 +106,6 @@ if (localStorage.getItem('token')) {
 
         document.addEventListener('click', event => {
           if(event.target.classList.contains('goToPost')){
-            console.log('ping')
             localStorage.setItem('postId', event.target.dataset.postid)
             location = '/post.html'
           }

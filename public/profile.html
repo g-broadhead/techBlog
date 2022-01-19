@@ -73,7 +73,7 @@
                 <p class="lead">${body}</p>
                 <hr class="my-4">
                 <button data-postId="${id}" onclick="editPost(event)" class="btn btn-primary update">Edit Post</button>
-                <button type="submit" class="btn btn-primary delete">Delete</button>
+                <button data-postId="${id}" onclick="editPost(event)" class="btn btn-primary">Delete</button>
               </div>
             `
       document.getElementById('posts').prepend(postElem)
@@ -85,6 +85,8 @@
       localStorage.setItem('postId', postId)
       window.location = '/editPost'
     }
+
+  
 
     async function renderPosts() {
       const { posts } = await getProfile()
