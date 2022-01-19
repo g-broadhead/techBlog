@@ -36,6 +36,7 @@
       <h1 class="display-4">Tech Blog</h1>
       <p class="lead">This is a simple blog app.</p>
       <hr class="my-4">
+      <p>Welcome Back <span id='username'></span>!</p>
     </div>
     <div id="posts" class="row"></div>
   </div>
@@ -64,21 +65,27 @@
       }
     }
 
-    async function renderPost({ title, body }) {
+    async function renderPost({ title, body, postId }) {
       const postElem = document.createElement('div')
       postElem.innerHTML = `
               <div class="row bg-light p-5 rounded-md mb-2 mt-2">
                 <h3>${title}</h3>
                 <p class="lead">${body}</p>
                 <hr class="my-4">
-                <button type="submit" class="btn btn-primary update">Edit Post</button>
+                <button data-postId="${postId}" type="submit" onclick="editPost(event)" class="btn btn-primary update">Edit Post</button>
                 <button type="submit" class="btn btn-primary delete">Delete</button>
               </div>
             `
       document.getElementById('posts').prepend(postElem)
     }
 
-      getUserPosts()
+    async function editPost(event){
+      // const postId = event.target.dataset.postId
+      const postID = event.target.getAttribute("data-postId")
+      console.log(postId)
+      localStorage.setItem('postId', postId)
+      location.redirect('/editPost')
+    }
 
     async function renderPosts() {
       const { posts } = await getProfile()
@@ -96,7 +103,7 @@
 
     renderPosts()
     renderUsername()
-    
+
   </script>
 </body>
 
