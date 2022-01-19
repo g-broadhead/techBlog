@@ -83,7 +83,6 @@ if (localStorage.getItem('token')) {
       document.getElementById("post").addEventListener('click', event => {
         event.preventDefault()
         createPost()
-        alert('Post Created')
       })
 
       axios.get('/api/posts', {
