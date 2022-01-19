@@ -65,14 +65,14 @@
       }
     }
 
-    async function renderPost({ title, body, postId }) {
+    async function renderPost({ title, body, id }) {
       const postElem = document.createElement('div')
       postElem.innerHTML = `
               <div class="row bg-light p-5 rounded-md mb-2 mt-2">
                 <h3>${title}</h3>
                 <p class="lead">${body}</p>
                 <hr class="my-4">
-                <button data-postId="${postId}" type="submit" onclick="editPost(event)" class="btn btn-primary update">Edit Post</button>
+                <button data-postId="${id}" onclick="editPost(event)" class="btn btn-primary update">Edit Post</button>
                 <button type="submit" class="btn btn-primary delete">Delete</button>
               </div>
             `
@@ -81,7 +81,7 @@
 
     async function editPost(event){
       // const postId = event.target.dataset.postId
-      const postID = event.target.getAttribute("data-postId")
+      const postId = event.target.getAttribute("data-postId")
       console.log(postId)
       localStorage.setItem('postId', postId)
       location.redirect('/editPost')
