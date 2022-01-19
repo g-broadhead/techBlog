@@ -121,6 +121,14 @@ if (localStorage.getItem('token')) {
       logoutUser()
     }) 
 
+    function timedOut() {
+        window.setTimeout(function () {
+          localStorage.removeItem('token')
+          location = "/login.html";
+        }, 300000);
+      }
+      timedOut()
+
   </script>
 </body>
 
