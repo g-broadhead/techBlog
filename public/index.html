@@ -98,6 +98,7 @@ if (localStorage.getItem('token')) {
             <h3 class="goToPost" data-postid="${post.id}"> ${post.title} </h3>
             <h5> posted by ${post.User.username} </h5>
             <p> ${post.body} </p>
+            <a href="/post.html" class="btn btn-dark btn-lg goToPost" data-postid="${post.id}" tabindex="-1" role="button">Go To Comment</a>
             `
             document.getElementById('posts').prepend(postElem)
           })
